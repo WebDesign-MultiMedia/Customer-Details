@@ -11,63 +11,6 @@
 //   .then((data) => console.log(data));
 // })
 
-const inputs = document.querySelectorAll('form input');
-const formSelect = document.querySelectorAll('form select');
-const formTextarea = document.querySelectorAll('form textarea');
-
-inputs.forEach(input => {
-  if (input.value.trim() === '') {
-    input.style.border = '2px solid red';
-  } else {
-    input.style.border = '2px solid green';
-  }
-});
-
-formSelect.forEach(s => {
-  if (s.value.trim() === '') {
-    s.style.border = '2px solid red';
-  } else {
-    s.style.border = '2px solid green';
-  }
-});
-formTextarea.forEach(t => {
-  if (t.value.trim() === '') {
-    t.style.border = '2px solid red';
-  } else {
-    t.style.border = '2px solid green';
-  }
-});
-
-
-
-// you can call that on form submit, or on each input's 'input' event:
-inputs.forEach(input => {
-  input.addEventListener('input', () => {
-    if (input.value.trim() === '') {
-      input.style.border = '2px solid red';
-    } else {
-      input.style.border = '2px solid green';
-    }
-  });
-});
-formSelect.forEach(s => {
-  s.addEventListener('input', () => {
-    if (s.value.trim() === '') {
-      s.style.border = '2px solid red';
-    } else {
-      s.style.border = '2px solid green';
-    }
-  });
-});
-formTextarea.forEach(t => {
-  t.addEventListener('input', () => {
-    if (t.value.trim() === '') {
-      t.style.border = '2px solid red';
-    } else {
-      t.style.border = '2px solid green';
-    }
-  });
-});
 
 let smtBtn = document.getElementById('custForm'); 
 
