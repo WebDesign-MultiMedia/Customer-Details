@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Awsome Font -->
+     <script src="https://kit.fontawesome.com/2b46095725.js" crossorigin="anonymous"></script>
+     <!-- TailwindCss -->
+      <link rel="stylesheet" href="./src/output.css">
+      <!-- SweetAlert -->
+       <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.min.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+
+    <!-- <div class="">
+     <img src="./imgs/BLFM-logo.PNG" alt="logo" srcset="" class="w-40">
+    </div> -->
+
+        <!-- CUSTOMER INFO -->
+    <div class="flex justify-center ">
+              <span class="flex flex-col text-center mt-10 p-2 ml-10">
+             <p class="text-2xl">Julio Salas</p>
+             <h2>Invoice Date: <span class="text-lg">2/23/1995</span> </h2>
+             <h2>Invoice Number: <span class="text-lg">345</span> </h2>
+                </span>
+             <span class="flex flex-col pt-16 text-center m-5 ">
+             <p>1980 Unionport Rd, Bronx, NY 10462</p>
+             </span>
+    </div>
+        <!-- TABLE DATA -->
+    <div class="flex justify-around mt-10">
+        <table  class="w-96">
+            <thead class="bg-gray-200 ">
+                <tr>
+                    <th><i class="fa-duotone fa-regular fa-clipboard"></i> Description</th>
+                    <th><i class="fa-duotone fa-regular fa-wallet"></i> Payment</th>
+                    <th><i class="fa-duotone fa-regular fa-dollar-sign"></i> Total</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                 <tr>
+                  <td>1 chrola de chivo</td>
+                  <td>Cash</td>
+                  <td>1961</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <!-- THANK YOU BOTTOM -->
+    <div class="flex flex-col items-center mt-10 ">
+        <p><i class="fa-duotone fa-regular fa-hand-holding-heart"></i> Thank you for your Support</p>
+        <span >
+        <a href="http://"><i class="fa-brands fa-facebook text-2xl"></i></a>
+        <a href="http://"><i class="fa-brands fa-tiktok text-2xl"></i></a>        
+        <a href="http://"><i class="fa-duotone fa-regular fa-map-location-dot text-2xl"></i></a>        
+        </span>
+    </div>
+
+    <!-- <img src="https://user-images.githubusercontent.com/69169/115467239-0ac27c00-a1e6-11eb-836b-190bf0ab264d.png" alt="" srcset=""> -->
+
+    <!-- <input type="text" id="phoneSearch" placeholder="Enter phone number">
+<button id="searchBtn">Search</button>
+
+<div id="searchResults"></div> -->
+
+    <script src="./searchCustomerInfo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.all.min.js"></script>
+
+</body>
+</html>
