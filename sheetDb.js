@@ -36,7 +36,6 @@ let smtBtn = document.getElementById('custForm');
 
    smtBtn.addEventListener('submit', async (event)=>{
     event.preventDefault();
-
     const dateInput = document.getElementById('Date').value;
     const formatteDate = formatDate(dateInput);
     const rawTime = document.getElementById('Time').value;
@@ -56,6 +55,51 @@ let smtBtn = document.getElementById('custForm');
             Cost : document.getElementById("Cost").value,
             Payment : document.getElementById("Payment").value,
         }
+
+        if(!data.Date || !data.Time || !data.Name || !data.Contact || !data.Address || !data.PickupDelivery || !data.Items || !data.Cost || !data.Payment){
+            Swal.fire({
+        title: 'Fill in Blanks',
+        showDenyButton: false,
+        showConfirmButton: false,
+        icon: 'error',
+        denyButtonText: 'Delete',
+        theme: 'dark',
+        timer: 1000,
+        backdrop: `
+    rgba(9, 8, 9, 0.87)
+    left top
+    no-repeat
+  `})
+        const f = document.getElementById('custForm');
+        const fields = f.querySelectorAll('input, select, textarea');
+        const btn = document.querySelector('button');
+    fields.forEach(field => {
+        if (field.value.trim() === '') {
+           // empty → red
+         field.style.border = '1px solid red';
+            btn.style.background = 'white';
+            btn.style.border = '2px solid red';
+         } else {
+          // has content → green
+          field.style.border = '1px solid green';
+         }
+    });
+
+        } else{
+                Swal.fire({
+        title: 'Successfullyy Stored',
+        showDenyButton: false,
+        showConfirmButton: false,
+        icon: 'success',
+        denyButtonText: 'Delete',
+        theme: 'dark',
+        timer: 1500,
+        backdrop: `
+    rgba(9, 8, 9, 0.87)
+    left top
+    no-repeat
+  `
+        })
         try{
             const res = await fetch(url, {
                 method: "POST",
@@ -73,6 +117,10 @@ let smtBtn = document.getElementById('custForm');
             console.error(err.message);
             
         }
+
+        smtBtn.reset();
+        fields.reset();
+    }
     
         
     }
