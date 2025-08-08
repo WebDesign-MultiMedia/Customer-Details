@@ -1,98 +1,82 @@
+// === SheetDB phone search + Tailwind table (JUST JS) ===
+
 const SHEETDB_URL = "https://sheetdb.io/api/v1/knvxv3inyom8t";
 
-// Function to fetch data & filter by phone number using regex
-async function searchByPhone(phonePattern) {
+// DOM
+const phoneInputEl = document.getElementById("phoneSearch");
+const searchBtn = document.getElementById("searchBtn");
+const resultsDiv = document.getElementById("searchResults");
+
+// Load all on start (optional). Comment this out if you only want searches.
+window.addEventListener("DOMContentLoaded", async () => {
+  const data = await fetchAll();
+  renderOrdersTable(data, resultsDiv);
+});
+
+// Click + Enter to search
+searchBtn.addEventListener("click", runSearch);
+phoneInputEl.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    runSearch();
+  }
+});
+
+async function runSearch() {
+  const phonePattern = phoneInputEl.value.trim();
+  if (!phonePattern) {
+    toast("Please enter a phone number to search.");
+    return;
+  }
+
   try {
-    // 1. Fetch all data from SheetDB
-    const res = await fetch(SHEETDB_URL);
-    const data = await res.json();
+    setLoading(resultsDiv, true);
+    const data = await fetchAll();
 
-    // 2. Create regex (case-insensitive, partial match)
-    const regex = new RegExp(phonePattern, "i");
+    const regex = safeUserRegex(phonePattern, "i");
 
-    // 3. Filter rows where Contact matches regex
-    const results = data.filter((row) => regex.test(row.Contact));
+    const results = data.filter((row) => {
+      const contact = String(row.Contact ?? "");
+      // Match either raw (regex) or digits-only "contains" for convenience
+      const rawMatch = regex.test(contact);
+      const digitsMatch = stripNonDigits(contact).includes(stripNonDigits(phonePattern));
+      return rawMatch || digitsMatch;
+    });
 
-    // 4. Display results
-    displayResults(results);
+    renderOrdersTable(results, resultsDiv);
   } catch (err) {
-    console.error("Error fetching data:", err);
+    console.error(err);
+    toast("Error searching. Check console.");
+  } finally {
+    setLoading(resultsDiv, false);
   }
 }
 
-// Create the table
-  const table = document.createElement("table");
-  table.style.background = "gray";
-  table.style.color = "white";
+// Fetch all rows from SheetDB
+async function fetchAll() {
+  const res = await fetch(SHEETDB_URL);
+  if (!res.ok) throw new Error(`Fetch failed: ${res.status}`);
+  return res.json();
+}
 
-  table.className = "border-collapse border w-full text-center rounded-xl";
-
-  // Table head (only once)
-  table.innerHTML = `
-    <thead class="text-blue-200" id="t">
-      <tr class="bg-green-200">
-        <th class="bg-pink-200">Id</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Address</th>
-        <th>Items</th>
-        <th>Cost</th>
-        <th>Payment Type</th>
-        <th>P/D</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-  `;
-
-  const tbody = table.querySelector("tbody");
-
-  // Loop through results to create rows
-  results.forEach((order) => {
-    const row = document.createElement("tr");
-    row.style.background = "#00499c";
-    row.style.color = "white";
-    row.style.textAlign = "center";
-  row.className = ' text-center border-2 border-white'
-
-    row.innerHTML = `
-      <td>${order.Id}</td>
-      <td >${order.Date}</td>
-      <td>${order.Time}</td>
-      <td>${order.Name}</td>
-      <td>${order.Contact}</td>
-      <td>${order.Address}</td>
-      <td>${order.Items}</span></td>
-      <td>$${order.Cost}</td>
-      <td>${order.Payment}</td>
-      <td>${order.PickupDelivery}</td>
-    `;
-
-    row.querySelectorAll('td').forEach(td =>{
-      td.style.padding = "10px";
-    })
-    row.querySelectorAll('td')[0].style.background = 'lightcoral';
-    row.querySelectorAll('td')[0].style.fontWeight = 'bold';
-
-    row.querySelectorAll('td')[7].style.background = 'lightblue';
-    row.querySelectorAll('td')[7].style.width = '10%';
-    row.querySelectorAll('td')[8].style.background = 'lightgreen';
-    row.querySelectorAll('td')[9].style.background = 'lightcoral';
-
-
-    tbody.appendChild(row);
-  });
-
+// Tailwind table renderer
 function renderOrdersTable(results, displayDiv) {
-  // scrollable wrapper for mobile
-  const wrapper = document.createElement('div');
-  wrapper.className = 'overflow-x-auto w-full';
+  displayDiv.innerHTML = "";
 
-  // table
-  const table = document.createElement('table');
+  if (!results || results.length === 0) {
+    displayDiv.innerHTML = `
+      <div class="p-4 text-center text-slate-700 bg-yellow-50 border border-yellow-200 rounded">
+        No matches found.
+      </div>`;
+    return;
+  }
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "overflow-x-auto w-full";
+
+  const table = document.createElement("table");
   table.className =
-    'min-w-[900px] md:min-w-full w-full border-collapse text-center text-xs sm:text-sm rounded-xl overflow-hidden';
+    "min-w-[900px] md:min-w-full w-full border-collapse text-center text-xs sm:text-sm rounded-xl overflow-hidden";
 
   table.innerHTML = `
     <thead class="bg-slate-800 text-white sticky top-0 z-10">
@@ -112,53 +96,81 @@ function renderOrdersTable(results, displayDiv) {
     <tbody></tbody>
   `;
 
-  const tbody = table.querySelector('tbody');
+  const tbody = table.querySelector("tbody");
 
-  results.forEach(order => {
-    const row = document.createElement('tr');
-    row.className = 'odd:bg-blue-900 even:bg-blue-800 text-white';
+  results.forEach((order) => {
+    const row = document.createElement("tr");
+    row.className = "odd:bg-blue-900 even:bg-blue-800 text-white";
 
     row.innerHTML = `
-      <td class="px-3 py-2 border border-slate-700 font-semibold">${order.Id ?? ''}</td>
-      <td class="px-3 py-2 border border-slate-700 whitespace-nowrap">${order.Date ?? ''}</td>
-      <td class="px-3 py-2 border border-slate-700 whitespace-nowrap">${order.Time ?? ''}</td>
-      <td class="px-3 py-2 border border-slate-700">${order.Name ?? ''}</td>
-      <td class="px-3 py-2 border border-slate-700">${order.Contact ?? ''}</td>
-      <td class="px-3 py-2 border border-slate-700 max-w-[240px] truncate" title="${order.Address ?? ''}">${order.Address ?? ''}</td>
-      <td class="px-3 py-2 border border-slate-700">${order.Items ?? ''}</td>
+      <td class="px-3 py-2 border border-slate-700 font-semibold">${safe(order.Id)}</td>
+      <td class="px-3 py-2 border border-slate-700 whitespace-nowrap">${safe(order.Date)}</td>
+      <td class="px-3 py-2 border border-slate-700 whitespace-nowrap">${safe(order.Time)}</td>
+      <td class="px-3 py-2 border border-slate-700">${safe(order.Name)}</td>
+      <td class="px-3 py-2 border border-slate-700">${safe(order.Contact)}</td>
+      <td class="px-3 py-2 border border-slate-700 max-w-[240px] truncate" title="${safe(order.Address)}">${safe(order.Address)}</td>
+      <td class="px-3 py-2 border border-slate-700">${safe(order.Items)}</td>
       <td class="px-3 py-2 border border-slate-700 whitespace-nowrap">${formatUSD(order.Cost)}</td>
-      <td class="px-3 py-2 border border-slate-700">${order.Payment ?? ''}</td>
-      <td class="px-3 py-2 border border-slate-700">${order.PickupDelivery ?? ''}</td>
+      <td class="px-3 py-2 border border-slate-700">${safe(order.Payment)}</td>
+      <td class="px-3 py-2 border border-slate-700">${safe(order.PickupDelivery)}</td>
     `;
 
-    // Per-cell highlights (no inline styles)
-    row.children[0].classList.add('bg-rose-200','text-rose-900');         // Id
-    row.children[7].classList.add('bg-sky-200','text-slate-900','w-[10%]'); // Cost
-    row.children[8].classList.add('bg-green-200','text-slate-900');       // Payment
-    row.children[9].classList.add('bg-rose-200','text-slate-900');        // P/D
+    // Per-cell highlights
+    row.children[0].classList.add("bg-rose-200", "text-rose-900"); // Id
+    row.children[7].classList.add("bg-sky-200", "text-slate-900", "w-[10%]"); // Cost
+    row.children[8].classList.add("bg-green-200", "text-slate-900"); // Payment
+    row.children[9].classList.add("bg-rose-200", "text-slate-900"); // P/D
 
     tbody.appendChild(row);
   });
 
   wrapper.appendChild(table);
-  displayDiv.innerHTML = '';
   displayDiv.appendChild(wrapper);
 }
 
-// Optional: currency formatter
+// Helpers
 function formatUSD(v) {
-  const n = Number(v);
-  if (Number.isNaN(n)) return v ? String(v) : '';
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(n);
+  if (v == null || v === "") return "";
+  const num = Number(String(v).replace(/[^\d.-]/g, ""));
+  if (Number.isNaN(num)) return String(v);
+  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(num);
 }
 
+function safe(value) {
+  return value == null ? "" : String(value);
+}
 
-// Example: Search on button click
-document.getElementById("searchBtn").addEventListener("click", () => {
-  const phoneInput = document.getElementById("phoneSearch").value.trim();
-  if (phoneInput) {
-    searchByPhone(phoneInput);
-  } else {
-    alert("Please enter a phone number to search");
+function stripNonDigits(s) {
+  return String(s ?? "").replace(/\D/g, "");
+}
+
+function escapeRegex(s) {
+  return String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function safeUserRegex(input, flags = "") {
+  try {
+    return new RegExp(input, flags);
+  } catch {
+    // fall back to literal match if user typed a broken pattern
+    return new RegExp(escapeRegex(input), flags);
   }
-});
+}
+
+function setLoading(container, isLoading) {
+  if (!isLoading) {
+    const ld = container.querySelector("[data-loading]");
+    if (ld) ld.remove();
+    return;
+  }
+  container.innerHTML = "";
+  const div = document.createElement("div");
+  div.setAttribute("data-loading", "true");
+  div.className = "p-4 text-center text-slate-700 bg-slate-100 border border-slate-200 rounded";
+  div.textContent = "Loading…";
+  container.appendChild(div);
+}
+
+function toast(msg) {
+  alert(msg); // swap with SweetAlert if you like
+}
