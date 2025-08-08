@@ -30,23 +30,59 @@ function displayResults(results) {
     return;
   }
 
+  // Create the table
+  const table = document.createElement("table");
+  table.style.border = '2px solid green';
+
+
+  table.className = "border-collapse border w-full text-center";
+
+  // Table head (only once)
+  table.innerHTML = `
+    <thead class="text-blue-200" id="t">
+      <tr class="bg-green-200">
+        <th class="bg-pink-200">Id</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>Pickup/Delivery</th>
+        <th>Items</th>
+        <th>Cost</th>
+        <th>Payment Type</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  `;
+
+
+
+  const tbody = table.querySelector("tbody");
+
+  // Loop through results to create rows
   results.forEach(order => {
-    const orderEl = document.createElement("div");
-    orderEl.className = "border p-2 m-2 bg-gray-100 rounded";
-    orderEl.innerHTML = `
-      <p><strong>Date:</strong> ${order.Date}</p>
-      <p><strong>Time:</strong> ${order.Time}</p>
-      <p><strong>Name:</strong> ${order.Name}</p>
-      <p><strong>Phone:</strong> ${order.Contact}</p>
-      <p><strong>Address:</strong> ${order.Address}</p>
-      <p><strong>Pickup/Delivery:</strong> ${order.PickupDelivery}</p>
-      <p><strong>Items:</strong> ${order.Items}</p>
-      <p><strong>Cost:</strong> $${order.Cost}</p>
-      <p><strong>Payment:</strong> ${order.Payment}</p>
+    const row = document.createElement("tr");
+     row.style.background = 'red';
+    row.innerHTML = `
+      <td class="bg-green-200 text-3xl">${order.Id}</td>
+      <td class="text-center bg-black">${order.Date}</td>
+      <td>${order.Time}</td>
+      <td>${order.Name}</td>
+      <td>${order.Contact}</td>
+      <td>${order.Address}</td>
+      <td>${order.PickupDelivery}</td>
+      <td class="text-green-400"><span class="text-green-400">${order.Items}</span></td>
+      <td>$${order.Cost}</td>
+      <td>${order.Payment}</td>
     `;
-    displayDiv.appendChild(orderEl);
+    tbody.appendChild(row);
   });
+
+  // Append the table to the display div
+  displayDiv.appendChild(table);
 }
+
 
 // Example: Search on button click
 document.getElementById("searchBtn").addEventListener("click", () => {

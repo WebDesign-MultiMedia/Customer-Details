@@ -9,81 +9,24 @@
       <link rel="stylesheet" href="./src/output.css">
       <!-- SweetAlert -->
        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.min.css" rel="stylesheet">
+         <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Metamorphous&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mozilla+Headline:wght@200..700&family=Playwrite+AU+QLD:wght@100..400&family=Playwrite+HU:wght@100..400&display=swap" rel="stylesheet">
+<title>Text Reminder</title>
     <title>Document</title>
 </head>
-<body>
+<body class="sm:bg-green-200 md:bg-green-200 lg:bg-blue-200 xl:bg-yellow-200">
 
-     <img src="./imgs/BLFM-logo.PNG" alt="logo" srcset="" class="2xl:bg-red-300 xl:bg-yellow-300 lg:bg-green-300 sm:bg-purple-700 md:mt-20 md:2xl:bg-purple-300   absolute left-0 top-0 mt-72 bottom-0 right-0 -z-20 opacity-15">
-
-
-        <!-- CUSTOMER INFO -->
-    <div class="flex justify-center ">
-              <span class="flex flex-col text-center mt-2 ml-10">
-             <p class="text-2xl bold ">Julio Salas</p>
-             <h2 ><span class="italic">Invoice Date:</span> <span class="text-lg">2/23/1995</span> </h2>
-             <h2><span class="italic">Invoice Number:</span> <span class="text-lg italic">345</span> </h2>
-                </span>
-             <span class="flex items-center pt-5 text-center m-5 ">
-             <h2><span class="italic">Address:</span> <br>1980 Unionport Rd, Bronx, NY 10462</h2>
-             </span>
-    </div>
-        <!-- TABLE DATA -->
-    <div class="flex justify-around mt-10">
-        <table  class="w-96">
-            <thead class="bg-gray-200 ">
-                <tr>
-                    <th><i class="fa-duotone fa-regular fa-clipboard text-xl"></i> Description</th>
-                    <th><i class="fa-duotone fa-regular fa-wallet text-xl"></i> Payment</th>
-                    <th><i class="fa-duotone fa-regular fa-dollar-sign text-xl"></i> Total</th>
-                </tr>
-            </thead>
-            <tbody class="text-center">
-                 <tr>
-                  <td>1 chrola de chivo</td>
-                  <td>Cash</td>
-                  <td>$540</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-        <!-- DEPOSIT OPTIONAL -->
-    <div class="flex justify-around mt-10">
-        <table  class="w-96">
-            <thead class="bg-gray-200 ">
-                <tr>
-                    <th><i class="fa-duotone fa-regular fa-hand-holding-dollar text-xl"></i> Desposit</th>
-                    <th><i class="fa-duotone fa-regular fa-circle-dollar text-xl"></i> Total</th>
-                </tr>
-            </thead>
-            <tbody class="text-center">
-                 <tr>
-                  <td>$250</td>
-                  <td>$290 Remainig</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-        <!-- THANK YOU  -->
-    <div class="flex flex-col items-center mt-40 ">
-        <p>Thank you for your Support <i class="fa-duotone fa-regular fa-hand-holding-heart text-xl"></i> </p>
-        <span >
-        <a href="https://www.facebook.com/BuffetLuciasFiestaMExicana"><i class="fa-brands fa-facebook text-4xl hover:text-blue-500"></i></a>
-        <a href="https://www.tiktok.com/@buffetluciasftamexicana?is_from_webapp=1&sender_device=pc"><i class="fa-brands fa-tiktok text-4xl pl-5 hover:text-cyan-500"></i></a>        
-        <a href="https://maps.app.goo.gl/BVCYcyCA5nvdb1as9"><i class="fa-duotone fa-regular fa-map-location-dot text-4xl pl-5 hover:text-green-500"></i></a>        
-        </span>
-    </div>
-        <!-- GOOGLE FEEDBACK REVIEW -->
-    <div class="flex flex-col items-center mt-5 pb-10">
-        <p class="text-center">“Small business, big thanks – your review means the world to us!”</p>
-        <a href="https://g.page/r/CRSDyjL1S-KyEBM/review"><img src="./imgs/google-review-qrCode.png" alt="" srcset=""></a>
-    </div>
-
+    
     <!-- <img src="https://user-images.githubusercontent.com/69169/115467239-0ac27c00-a1e6-11eb-836b-190bf0ab264d.png" alt="" srcset=""> -->
 
-    <!-- <input type="text" id="phoneSearch" placeholder="Enter phone number">
+    <input type="text" id="phoneSearch" placeholder="Enter phone number">
 <button id="searchBtn">Search</button>
 
-<div id="searchResults"></div> -->
+<div id="searchResults"></div>
+
+
 
     <script src="./searchCustomerInfo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.all.min.js"></script>

@@ -1,0 +1,87 @@
+ <!-- <img src="./imgs/BLFM-logo.PNG" alt="logo" srcset="" class="mt-72 w-96 sm:absolute sm:left-32 sm:ml-14 sm:mt-54 lg:absolute lg:left-96 lg:ml-14 lg:mt-28  absolute left-0  top-0 bottom-0 right-0 -z-20 opacity-35">
+
+      <img src="./imgs/BLFM-logo.PNG" alt="logo" srcset="" class="mt-72 w-96 sm:absolute sm:left-32 sm:ml-14 sm:mt-54 lg:absolute lg:left-96 lg:ml-14 lg:mt-28  absolute left-0  top-0 bottom-0 right-0 -z-20 opacity-20">
+
+        
+     <img src="./imgs/BLFM-logo.PNG" alt="logo" srcset="" class="mt-72 w-96 sm:absolute sm:left-32 sm:ml-14 sm:mt-54 lg:absolute lg:left-96 lg:ml-14 lg:mt-28  absolute left-0  top-0 bottom-0 right-0 -z-20 opacity-35">
+
+
+        <!-- CUSTOMER INFO -->
+    <div class="flex justify-center sm:m-20 ">
+              <span class="flex flex-col text-center ml-10">
+             <p class="text-2xl bold sm:text-4xl pt-5 font-form sm:pb-5">Julio Salas</p>
+             <h2 class="font-headings"><span >Invoice Date:</span> <span class="text-lg italic">2/23/1995</span> </h2>
+             <h2 class="font-headings"><span>Invoice Number:</span> <span class="text-lg italic">345</span> </h2>
+                </span>
+             <span class="flex items-center pt-5 text-center m-5 ">
+             <h2 class="sm:w-52 sm:text-xl font-headings">1980 Unionport Rd, Bronx, NY 10462</h2>
+             </span>
+    </div>
+        <!-- TABLE DATA -->
+    <div class="flex justify-around mt-7 sm:-mt-5">
+        <table  class="w-96">
+            <thead class="bg-gray-200 ">
+                <tr>
+                    <th class="font-headings sm:text-xl"><i class="fa-duotone fa-regular fa-clipboard text-xl"></i> Description</th>
+                    <th class="font-headings sm:text-xl"><i class="fa-duotone fa-regular fa-wallet text-xl"></i> Payment</th>
+                    <th class="font-headings sm:text-xl"><i class="fa-duotone fa-regular fa-dollar-sign text-xl"></i> Total</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                 <tr>
+                  <td>1 chrola de chivo</td>
+                  <td>Cash</td>
+                  <td>$540</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <!-- DEPOSIT OPTIONAL -->
+    <div class="flex justify-around mt-10">
+        <table  class="w-96">
+            <thead class="bg-gray-200 ">
+                <tr>
+                    <th class="font-headings sm:text-xl"><i class="fa-duotone fa-regular fa-hand-holding-dollar text-xl"></i> Desposit</th>
+                    <th class="font-headings sm:text-xl"><i class="fa-duotone fa-regular fa-circle-dollar text-xl"></i> Total</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                 <tr>
+                  <td>$250</td>
+                  <td>$290 Remainig</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        <!-- THANK YOU  -->
+    <div class="flex flex-col items-center mt-10 sm:mt-10 ">
+        <p class="text-xl font-form3 sm:m-2">Gracias por su apoyo <i class="fa-duotone fa-regular fa-hand-holding-heart text-xl sm:text-2xl "></i> </p>
+        <p class="font-bold font-form">Buffet Lucia Fiesta Mexicana</p>
+        <span >
+        <a href="https://www.facebook.com/BuffetLuciasFiestaMExicana"><i class="fa-brands fa-facebook text-4xl text-blue-600 hover:text-blue-400"></i></a>
+        <a href="https://www.tiktok.com/@buffetluciasftamexicana?is_from_webapp=1&sender_device=pc"><i class="fa-brands fa-tiktok text-4xl pl-5 text-cyan-500 hover:text-cyan-300"></i></a>        
+        <a href="https://maps.app.goo.gl/BVCYcyCA5nvdb1as9"><i class="fa-duotone fa-regular fa-map-location-dot text-4xl pl-5 text-green-700 hover:text-green-300"></i></a>        
+        </span>
+    </div>
+        <!-- GOOGLE FEEDBACK REVIEW -->
+         
+    <div class="flex flex-col items-center -mt-2 sm:mt-5 pb-2">
+        <p class="text-center font-form">"Pequeño negocio, grandes gracias: <br> ¡tu reseña significa el mundo para nosotros!"</p>
+        <a href="https://g.page/r/CRSDyjL1S-KyEBM/review" class="sm:mt-3"><img src="./imgs/google-review-qrCode.png" alt="" srcset=""></a>
+    </div>
+
+
+
+
+
+    <!-- 
+          <p><strong>Date:</strong> ${order.Date}</p>
+      <p><strong>Time:</strong> ${order.Time}</p>
+      <p><strong>Name:</strong> ${order.Name}</p>
+      <p><strong>Phone:</strong> ${order.Contact}</p>
+      <p><strong>Address:</strong> ${order.Address}</p>
+      <p><strong>Pickup/Delivery:</strong> ${order.PickupDelivery}</p>
+      <p><strong>Items:</strong> ${order.Items}</p>
+      <p><strong>Cost:</strong> $${order.Cost}</p>
+      <p><strong>Payment:</strong> ${order.Payment}</p>
+       -->
