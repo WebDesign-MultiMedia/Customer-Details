@@ -82,13 +82,13 @@ function displayResults(results) {
     row.querySelectorAll('td').forEach(td =>{
       td.style.padding = "10px";
     })
-    row.querySelectorAll('td')[0].style.background = 'lightcoral';
+    // row.querySelectorAll('td')[0].style.background = 'lightcoral';
     row.querySelectorAll('td')[0].style.fontWeight = 'bold';
 
-    row.querySelectorAll('td')[7].style.background = 'lightblue';
-    row.querySelectorAll('td')[7].style.width = '10%';
-    row.querySelectorAll('td')[8].style.background = 'lightgreen';
-    row.querySelectorAll('td')[9].style.background = 'lightcoral';
+    // row.querySelectorAll('td')[7].style.background = 'lightblue';
+    row.querySelectorAll('td')[7].style.width = '5%';
+    // row.querySelectorAll('td')[8].style.background = 'lightgreen';
+    // row.querySelectorAll('td')[9].style.background = 'lightcoral';
 
 
     tbody.appendChild(row);
