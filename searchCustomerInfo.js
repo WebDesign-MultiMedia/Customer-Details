@@ -11,7 +11,7 @@ async function searchByPhone(phonePattern) {
     const regex = new RegExp(phonePattern, "i");
 
     // 3. Filter rows where Contact matches regex
-    const results = data.filter(row => regex.test(row.Contact));
+    const results = data.filter((row) => regex.test(row.Contact));
 
     // 4. Display results
     displayResults(results);
@@ -32,10 +32,10 @@ function displayResults(results) {
 
   // Create the table
   const table = document.createElement("table");
-  table.style.border = '2px solid green';
+  table.style.background = "gray";
+  table.style.color = "white";
 
-
-  table.className = "border-collapse border w-full text-center";
+  table.className = "border-collapse border w-full text-center rounded-xl";
 
   // Table head (only once)
   table.innerHTML = `
@@ -47,42 +47,56 @@ function displayResults(results) {
         <th>Name</th>
         <th>Phone</th>
         <th>Address</th>
-        <th>Pickup/Delivery</th>
         <th>Items</th>
         <th>Cost</th>
         <th>Payment Type</th>
-      </tr>
+        <th>P/D</th>
+        </tr>
     </thead>
     <tbody></tbody>
   `;
 
-
-
   const tbody = table.querySelector("tbody");
 
   // Loop through results to create rows
-  results.forEach(order => {
+  results.forEach((order) => {
     const row = document.createElement("tr");
-     row.style.background = 'red';
+    row.style.background = "#00499c";
+    row.style.color = "white";
+    row.style.textAlign = "center";
+  row.className = ' text-center border-2 border-white'
+
     row.innerHTML = `
-      <td class="bg-green-200 text-3xl">${order.Id}</td>
-      <td class="text-center bg-black">${order.Date}</td>
+      <td>${order.Id}</td>
+      <td >${order.Date}</td>
       <td>${order.Time}</td>
       <td>${order.Name}</td>
       <td>${order.Contact}</td>
       <td>${order.Address}</td>
-      <td>${order.PickupDelivery}</td>
-      <td class="text-green-400"><span class="text-green-400">${order.Items}</span></td>
+      <td>${order.Items}</span></td>
       <td>$${order.Cost}</td>
       <td>${order.Payment}</td>
+      <td>${order.PickupDelivery}</td>
     `;
+
+    row.querySelectorAll('td').forEach(td =>{
+      td.style.padding = "10px";
+    })
+    row.querySelectorAll('td')[0].style.background = 'lightcoral';
+    row.querySelectorAll('td')[0].style.fontWeight = 'bold';
+
+    row.querySelectorAll('td')[7].style.background = 'lightblue';
+    row.querySelectorAll('td')[7].style.width = '10%';
+    row.querySelectorAll('td')[8].style.background = 'lightgreen';
+    row.querySelectorAll('td')[9].style.background = 'lightcoral';
+
+
     tbody.appendChild(row);
   });
 
   // Append the table to the display div
   displayDiv.appendChild(table);
 }
-
 
 // Example: Search on button click
 document.getElementById("searchBtn").addEventListener("click", () => {

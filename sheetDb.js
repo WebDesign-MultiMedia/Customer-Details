@@ -11,130 +11,128 @@
 //   .then((data) => console.log(data));
 // })
 
+let smtBtn = document.getElementById("custForm");
 
-let smtBtn = document.getElementById('custForm'); 
+// DATE FORMAT MM/DD/YYYY
+function formatDate(inputDate) {
+  if (!inputDate) return "";
+  const [year, month, day] = inputDate.split("-");
+  return `${month}/${day}/${year}`;
+}
 
-    // DATE FORMAT MM/DD/YYYY
-    function formatDate(inputDate) {
-        if (!inputDate) return '';
-        const [year, month, day] = inputDate.split('-');
-        return `${month}/${day}/${year}`;
-    } 
+// TIME FORMAT 12 - HOUR
+function time12Hour(timeStr) {
+  if (!timeStr) return "";
+  let [hour, mintue] = timeStr.split(":");
+  hour = parseInt(hour);
+  const ampm = hour >= 12 ? "PM" : "AM";
+  hour = hour % 12;
+  if (hour === 0) {
+    hour = 12;
+  }
+  return `${hour}:${mintue} ${ampm}`;
+}
 
-    // TIME FORMAT 12 - HOUR
-    function time12Hour(timeStr) {
-        if(!timeStr) return '';
-        let [hour, mintue] = timeStr.split(':');
-        hour = parseInt(hour);
-        const ampm = hour >= 12 ? 'PM' : 'AM';
-        hour = hour % 12;
-        if (hour === 0 ) {
-            hour = 12;
-        }
-        return `${hour}:${mintue} ${ampm}`;
-    }
+smtBtn.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const dateInput = document.getElementById("Date").value;
+  const formatteDate = formatDate(dateInput);
+  const rawTime = document.getElementById("Time").value;
+  const formattedTime = time12Hour(rawTime);
 
-   smtBtn.addEventListener('submit', async (event)=>{
-    event.preventDefault();
-    const dateInput = document.getElementById('Date').value;
-    const formatteDate = formatDate(dateInput);
-    const rawTime = document.getElementById('Time').value;
-    const formattedTime = time12Hour(rawTime);
+  async function gSheetSubmit() {
+    const url = "https://sheetdb.io/api/v1/knvxv3inyom8t";
+    const data = {
+      Date: formatteDate,
+      Time: formattedTime,
+      Name: document.getElementById("Name").value,
+      Contact: document.getElementById("Contact").value,
+      Address: document.getElementById("Address").value,
+      PickupDelivery: document.getElementById("PickupDelivery").value,
+      Items: document.getElementById("Items").value,
+      Cost: document.getElementById("Cost").value,
+      Payment: document.getElementById("Payment").value,
+    };
 
-
-    async function gSheetSubmit() {
-        const url = "https://sheetdb.io/api/v1/knvxv3inyom8t";
-        const data = {
-            Date : formatteDate ,
-            Time : formattedTime ,
-            Name : document.getElementById("Name").value,
-            Contact : document.getElementById("Contact").value,
-            Address : document.getElementById("Address").value,
-            PickupDelivery: document.getElementById('PickupDelivery').value,
-            Items : document.getElementById("Items").value,
-            Cost : document.getElementById("Cost").value,
-            Payment : document.getElementById("Payment").value,
-        }
-
-        if(!data.Date || !data.Time || !data.Name || !data.Contact || !data.Address || !data.PickupDelivery || !data.Items || !data.Cost || !data.Payment){
-            Swal.fire({
-        title: 'Fill in Blanks',
+    if (
+      !data.Date ||
+      !data.Time ||
+      !data.Name ||
+      !data.Contact ||
+      !data.Address ||
+      !data.PickupDelivery ||
+      !data.Items ||
+      !data.Cost ||
+      !data.Payment
+    ) {
+      Swal.fire({
+        title: "Fill in Blanks",
         showDenyButton: false,
         showConfirmButton: false,
-        icon: 'error',
-        denyButtonText: 'Delete',
-        theme: 'dark',
+        icon: "error",
+        denyButtonText: "Delete",
+        theme: "dark",
         timer: 1000,
         backdrop: `
     rgba(9, 8, 9, 0.87)
     left top
     no-repeat
-  `})
-        const f = document.getElementById('custForm');
-        const fields = f.querySelectorAll('input, select, textarea');
-        const btn = document.querySelector('button');
-    fields.forEach(field => {
-        if (field.value.trim() === '') {
-           // empty → red
-         field.style.border = '1px solid red';
-            btn.style.background = 'white';
-            btn.style.border = '2px solid red';
-         } else {
+  `,
+      });
+      const f = document.getElementById("custForm");
+      const fields = f.querySelectorAll("input, select, textarea");
+      const btn = document.querySelector("button");
+      fields.forEach((field) => {
+        if (field.value.trim() === "") {
+          // empty → red
+          field.style.border = "1px solid red";
+          btn.style.background = "white";
+          btn.style.border = "2px solid red";
+        } else {
           // has content → green
-          field.style.border = '1px solid green';
-         }
-    });
-
-        } else{
-                Swal.fire({
-        title: 'Successfullyy Stored',
+          field.style.border = "1px solid green";
+        }
+      });
+    } else {
+      Swal.fire({
+        title: "Successfullyy Stored",
         showDenyButton: false,
         showConfirmButton: false,
-        icon: 'success',
-        denyButtonText: 'Delete',
-        theme: 'dark',
+        icon: "success",
+        denyButtonText: "Delete",
+        theme: "dark",
         timer: 1500,
         backdrop: `
     rgba(9, 8, 9, 0.87)
     left top
     no-repeat
-  `
-        })
-        try{
-            const res = await fetch(url, {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type" : "application/json",
-                },
-            });
-            if(!res.ok){
-                throw new Error(`Response status: ${res.status}`);
-            }
-            const json = await res.json();
-            console.log(json);
-        } catch(err){
-            console.error(err.message);
-            
+  `,
+      });
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (!res.ok) {
+          throw new Error(`Response status: ${res.status}`);
         }
+        const json = await res.json();
+        console.log(json);
+      } catch (err) {
+        console.error(err.message);
+      }
 
-        smtBtn.reset();
-        fields.reset();
+      smtBtn.reset();
+      fields.reset();
     }
-    
-        
-    }
+  }
 
-    await gSheetSubmit();
+  await gSheetSubmit();
 
-    
-
-     swal("Submitted Successfully!", "...Keep on tracking!");
-     document.getElementById('CustomerDetails').reset();
-    setTimeout(() => {
-       
-    }, 3000);
+  swal("Submitted Successfully!", "...Keep on tracking!");
+  document.getElementById("CustomerDetails").reset();
+  setTimeout(() => {}, 3000);
 });
-
-
-
