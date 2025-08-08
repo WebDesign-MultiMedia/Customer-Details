@@ -630,6 +630,10 @@ video {
   justify-content: center;
 }
 
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
 .rounded-xl {
   border-radius: 0.75rem;
 }
