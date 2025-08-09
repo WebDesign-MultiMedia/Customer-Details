@@ -32,9 +32,9 @@ function displayResults(results) {
 
   // Create the table
   const table = document.createElement("table");
-  table.style.background = "gray";
-  table.style.color = "white";
-  table.className = "border-collapse border w-full text-center rounded-xl";
+  table.style.background = "white";
+  table.style.color = "black";
+  table.className = "border-collapse  text-center rounded-xl";
 
   // Table head (only once)
   table.innerHTML = `
@@ -48,7 +48,7 @@ function displayResults(results) {
         <th>Address</th>
         <th>Items</th>
         <th>Cost</th>
-        <th>Payment Type</th>
+        <th>Payment</th>
         <th>P/D</th>
         </tr>
     </thead>
@@ -63,8 +63,9 @@ function displayResults(results) {
     const row = document.createElement("tr");
     row.style.background = "#00499c";
     row.style.color = "white";
-    row.style.textAlign = "center";
-    row.className = ' text-center border-2 border-white'
+    row.style.border = "2px solid white";
+    row.style.borderRight = "2px solid white";
+    row.className = ' text-center'
 
 
     row.innerHTML = `
@@ -84,13 +85,12 @@ function displayResults(results) {
     //   td.style.padding = "10px";
     // })
 
-    row.querySelectorAll('td')[0].style.background = 'lightcoral';
-    row.querySelectorAll('td')[0].style.fontWeight = 'bold';
+    row.querySelectorAll('td')[0].style.borderRight = '2px solid white';
+    row.querySelectorAll('td')[0].style.background = 'darkred';
+    row.querySelectorAll('td')[0].style.width = '3em';
+    row.querySelectorAll('td')[5].style.width = '10em';
+    
 
-    row.querySelectorAll('td')[7].style.background = 'lightblue';
-    row.querySelectorAll('td')[7].style.width = '2%';
-    row.querySelectorAll('td')[8].style.background = 'lightgreen';
-    row.querySelectorAll('td')[9].style.background = 'lightcoral';
 
 
     tbody.appendChild(row);
