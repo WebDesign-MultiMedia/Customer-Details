@@ -34,14 +34,13 @@ function displayResults(results) {
   const table = document.createElement("table");
   table.style.background = "gray";
   table.style.color = "white";
-
   table.className = "border-collapse border w-full text-center rounded-xl";
 
   // Table head (only once)
   table.innerHTML = `
-    <thead class="text-blue-200" id="t">
-      <tr class="bg-green-200">
-        <th class="bg-pink-200">Id</th>
+    <thead>
+      <tr>
+        <th>Id</th>
         <th>Date</th>
         <th>Time</th>
         <th>Name</th>
@@ -56,6 +55,7 @@ function displayResults(results) {
     <tbody></tbody>
   `;
 
+
   const tbody = table.querySelector("tbody");
 
   // Loop through results to create rows
@@ -64,7 +64,8 @@ function displayResults(results) {
     row.style.background = "#00499c";
     row.style.color = "white";
     row.style.textAlign = "center";
-  row.className = ' text-center border-2 border-white'
+    row.className = ' text-center border-2 border-white'
+
 
     row.innerHTML = `
       <td>${order.Id}</td>
@@ -79,16 +80,17 @@ function displayResults(results) {
       <td>${order.PickupDelivery}</td>
     `;
 
-    row.querySelectorAll('td').forEach(td =>{
-      td.style.padding = "10px";
-    })
-    // row.querySelectorAll('td')[0].style.background = 'lightcoral';
+    // row.querySelectorAll('td').forEach(td =>{
+    //   td.style.padding = "10px";
+    // })
+
+    row.querySelectorAll('td')[0].style.background = 'lightcoral';
     row.querySelectorAll('td')[0].style.fontWeight = 'bold';
 
-    // row.querySelectorAll('td')[7].style.background = 'lightblue';
-    row.querySelectorAll('td')[7].style.width = '5%';
-    // row.querySelectorAll('td')[8].style.background = 'lightgreen';
-    // row.querySelectorAll('td')[9].style.background = 'lightcoral';
+    row.querySelectorAll('td')[7].style.background = 'lightblue';
+    row.querySelectorAll('td')[7].style.width = '2%';
+    row.querySelectorAll('td')[8].style.background = 'lightgreen';
+    row.querySelectorAll('td')[9].style.background = 'lightcoral';
 
 
     tbody.appendChild(row);
