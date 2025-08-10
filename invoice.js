@@ -91,16 +91,22 @@ loadInvoiceById("707");
 //   if (data.length) loadInvoiceById(data[0].Id);
 // }
 
-// POP UP SEARCH
+  // PopUp Invoice search 
+
+  // POP UP SEARCH
 const popUp = document.getElementById('popUp');
+const h2 = document.getElementById('invoiSrch');
 
+// Create the element once
+const popUpDiv = document.createElement('div');
+popUpDiv.innerHTML = `
+  <input type="text" class="w-20 placeholder:text-center placeholder:text-gray-500 mb-2" placeholder="Invoice #">
+  <button type="submit" id='btnInvoice' class="bg-red-500 border-2 border-white text-white w-20 rounded-lg p-2">Invoice</button>
+`;
+popUpDiv.style.display = 'none'; // Hidden by default
+h2.appendChild(popUpDiv);
+
+// Toggle on click
 popUp.addEventListener('click', () => {
-  const h2 = document.querySelector('h2'); 
-
-  h2.innerHTML += `
-    <div class="absolute p-2 sm:-mt-12 -mt-5 ml-40 bg-red-400 sm:bg-red-500 md:bg-blue-400 lg:bg-red-400 lg:mt-2 lg:pb-1 text-center w-28 rounded-lg">
-      <input type="text" class="w-20 placeholder:text-center placeholder:text-gray-500 mb-2" placeholder="Invoice #">
-      <button type="submit" class="bg-red-500 border-2 border-white text-white w-20 rounded-lg p-2">Invoice</button>
-    </div>
-  `;
+  popUpDiv.style.display = (popUpDiv.style.display === 'none') ? 'block' : 'none';
 });

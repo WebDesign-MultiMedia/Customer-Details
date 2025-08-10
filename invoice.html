@@ -16,20 +16,20 @@
       href="https://fonts.googleapis.com/css2?family=Metamorphous&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mozilla+Headline:wght@200..700&family=Playwrite+AU+QLD:wght@100..400&family=Playwrite+HU:wght@100..400&display=swap"
       rel="stylesheet"
     />
-    <title>Invoice</title>
+    <title>Customer invoice</title>
 </head>
-<body class="sm:bg-cyan-400 md:bg-red-300 xl:bg-teal-300">
+<body class="sm:bg-gray-200 md:bg-red-300 xl:bg-teal-300">
 
     
         <!-- CUSTOMER INFO -->
-    <div class="flex justify-center sm:m-20 xl:-mt-2 xl:pt-5" >
+    <div class="flex justify-center sm:m-20  xl:-mt-2 xl:pt-5 text-black" >
               <span class="flex flex-col text-left ml-10">
-             <img src="./imgs/BLFM-logo.PNG" alt="logo" srcset="" class="absolute right-0 left-0 top-20 sm:absolute sm:right-0 sm:left-0 sm:top-20  -z-20 opacity-15">
+             <img src="./imgs/BLFM-logo.PNG" alt="logo" srcset="" class="absolute right-0 left-0 top-20 sm:absolute sm:right-0 sm:left-0 sm:-top-5  -z-20 opacity-25">
              <p class="text-4xl  bold sm:text-4xl text-center font-form sm:pb-5 pt-5 mb-5 xl:mb-2" id="invCustomer"></p>
-             <h2 class="font-headings"><i class="fa-solid fa-location-dot text-xl"></i></span> : <span class="text-lg italic" id="invAddress"></span> </h2>
-             <h2 class="font-headings"><span ><i class="fa-duotone fa-regular fa-phone"></i></span> : <span class="text-lg italic" id="invPhoneNum"></span> </h2>
-             <h2 class="font-headings"><span ><i class="fa-duotone fa-regular fa-calendar-days"></i> : </span> <span class="text-lg italic" id="invDate"></span> </h2>
-             <h2 class="font-headings"><span><i class="fa-regular fa-receipt" id="popUp"></i> : </span> <span class="text-lg italic" id="invNumber"></span> </h2>
+             <h2 class="font-headings "><i class="fa-solid fa-location-dot text-xl"></i></span> : <span class="text-lg italic" id="invAddress"></span> </h2>
+             <h2 class="font-headings text-center"><span ><i class="fa-duotone fa-regular fa-phone"></i></span> : <span class="text-lg italic" id="invPhoneNum"></span> </h2>
+             <h2 class="font-headings text-center"><span ><i class="fa-duotone fa-regular fa-calendar-days"></i> : </span> <span class="text-lg italic" id="invDate"></span> </h2>
+             <h2 id="invoiSrch" class="font-headings text-center"><span><i class="fa-regular fa-receipt" id="popUp"></i> : </span> <span class="text-lg italic" id="invNumber"></span> </h2>
                 </span>
              <span class="flex flex-col items-center pt-10 text-center m-5 ">
              <!-- <h2 class="sm:w-52 sm:text-xl font-headings italic" id="invPhoneNum"></h2> -->
@@ -39,14 +39,14 @@
         <!-- TABLE DATA -->
     <div class="flex justify-around mt-2 sm:-mt-16">
         <table  class="  ">
-            <thead class="bg-gray-200 ">
+            <thead class="bg-gray-200">
                 <tr>
-                    <th class="font-headings sm:text-xl"><i class="fa-duotone fa-regular fa-clipboard text-xl"></i> Description</th>
-                    <th class="font-headings sm:text-xl"><i class="fa-duotone fa-regular fa-wallet text-xl"></i> Payment</th>
+                    <th class="font-headings sm:text-xl"><i class="fa-duotone fa-regular fa-clipboard text-xl"></i> Descripción</th>
+                    <th class="font-headings sm:text-xl"><i class="fa-duotone fa-regular fa-wallet text-xl"></i> Pago</th>
                     <th class="font-headings sm:text-xl"><i class="fa-duotone fa-regular fa-dollar-sign text-xl"></i> Total</th>
                 </tr>
             </thead>
-            <tbody class="text-center text-lg " id="lineItemsBody">
+            <tbody class="text-center text-lg text-black" id="lineItemsBody">
                  <tr>
                   <td></td>
                   <td></td>
@@ -60,11 +60,11 @@
         <table class="w-96">
             <thead class="bg-gray-300">
                 <tr>
-                    <th class="font-headings sm:text-xl"><i class="fa-duotone fa-regular fa-hand-holding-dollar text-xl"></i> Desposit</th>
-                    <th class="font-headings sm:text-xl"><i class="fa-duotone fa-regular fa-circle-dollar text-xl"></i> Total</th>
+                    <th class="font-headings sm:text-xl"><i class="fa-duotone fa-regular fa-hand-holding-dollar text-xl"></i> Depósito</th>
+                    <th class="font-headings sm:text-xl"><i class="fa-duotone fa-regular fa-circle-dollar text-xl"></i> Restante</th>
                 </tr>
             </thead>
-            <tbody class="text-center  text-lg" id="depositBody">
+            <tbody class="text-center text-black  text-lg" id="depositBody">
                  <tr>
                   <td></td>
                   <td></td>
@@ -73,10 +73,10 @@
         </table>
     </div>
         <!-- THANK YOU  -->
-    <div class="flex flex-col items-center mt-10 sm:mt-10 ">
+    <div class="flex flex-col items-center mt-10 sm:mt-2 text-black">
         <p class="text-xl font-form3 sm:m-2">Gracias por su apoyo <i class="fa-duotone fa-regular fa-hand-holding-heart text-xl sm:text-2xl "></i> </p>
         <p class="font-bold font-form">Buffet Lucia Fiesta Mexicana</p>
-        <span >
+        <span class="sm:pt-2 sm:pb-2">
         <a href="https://www.facebook.com/BuffetLuciasFiestaMExicana"><i class="fa-brands fa-facebook text-4xl text-blue-600 hover:text-blue-400"></i></a>
         <a href="https://www.tiktok.com/@buffetluciasftamexicana?is_from_webapp=1&sender_device=pc"><i class="fa-brands fa-tiktok text-4xl pl-5 text-cyan-500 hover:text-cyan-300"></i></a>        
         <a href="https://maps.app.goo.gl/BVCYcyCA5nvdb1as9"><i class="fa-duotone fa-regular fa-map-location-dot text-4xl pl-5 text-green-700 hover:text-green-300"></i></a>        
@@ -84,7 +84,7 @@
     </div>
         <!-- GOOGLE FEEDBACK REVIEW -->
          
-    <div class="flex flex-col items-center -mt-2 sm:mt-5 pb-2">
+    <div class="flex flex-col items-center -mt-2 sm:-mt-1 pb-2 text-black">
         <p class="text-center font-form">"Pequeño negocio, grandes gracias: <br> ¡tu reseña significa el mundo para nosotros!"</p>
         <a href="https://g.page/r/CRSDyjL1S-KyEBM/review" class="sm:mt-3 mt-2"><img src="./imgs/google-review-qrCode.png" alt="" srcset=""></a>
     </div>
