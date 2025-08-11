@@ -9,13 +9,13 @@
      <script src="https://kit.fontawesome.com/2b46095725.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
-<body class="bg-blue-900 sm:bg-blue-200 md:bg-red-200 lg:bg-green-200 xl:bg-yellow-200 2xl:bg-pink-200">
+<body class="bg-gray-800 sm:bg-blue-200 md:bg-red-200 lg:bg-green-200 xl:bg-yellow-200 2xl:bg-pink-200">
     
     <form class="flex justify-center mt-5 ">
-        <fieldset  class="flex w-20 p-2 flex-nowrap border-2 bg-gray-800 border-black rounded-xl">
+        <fieldset  class="flex  p-2 flex-nowrap border-2 border-white bg-gray-800 rounded-xl">
             <legend class="text-yellow-400 text-3xl">Customer Order </legend>
             <!-- CUSTOMER INFO -->
-             <span class="flex flex-col justify-center mr-2 text-white"> 
+             <span class="flex flex-wrap mr-2 text-white"> 
             <label for="" class="text-end">Date</label>
             <input type="date" value="" name="" id="" class="border-2 w-32 border-black rounded-full text-center bg-yellow-500">
             <label for="" >Time</label>
@@ -34,7 +34,7 @@
             </select>
             </span>
             <!-- CUSTOMER ORDER -->
-            <span class="flex flex-col items-center text-white">
+            <span class="flex flex-wrap items-center text-white">
             <label for="" class="text-start">Cost</label>
             <input type="text" value="" name="" id="" placeholder="Total" class="border-2 w-20 border-black rounded-full text-center bg-yellow-500 placeholder:text-white">
             <label for="">Deposit</label>
@@ -46,12 +46,11 @@
             <option value="Zelle">Zelle</option>
             </select>
             <label for="">Items</label>
-            <textarea name="Items" id="" cols="30" rows="3" class="w-40  border-2 border-black  text-center  rounded-xl bg-yellow-500 placeholder:text-white" placeholder="Customer order" ></textarea>
+            <textarea name="Items" id="" cols="30" rows="3" class="w-40 pb-20 border-2 border-black  text-center  rounded-xl bg-yellow-500 placeholder:text-white" placeholder="Customer order" ></textarea>
             <label for="">Quantity</label>
             <input type="number" name="Quantity" id="" value="1" min="1" max="10" class="border-2 w-12 border-black rounded-full text-center bg-yellow-500 text-white">    
-            
             </span>
-            <button type="submit" class=" text-white border-2 border-white p-2 ml-2 rounded-lg bg-blue-900 hover:bg-blue-600">Submit</button>
+            <button type="submit" class=" text-white p-2 ml-2 rounded-lg bg-blue-900 hover:bg-blue-600">Submit</button>
         </fieldset>
     </form>
 
