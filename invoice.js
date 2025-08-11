@@ -38,6 +38,7 @@ async function loadInvoiceById(invoiceId) {
       tr.querySelectorAll('td')[1].style.width = '10em';
       tr.querySelectorAll('td')[2].style.width = '10em';
 
+
       tbody.appendChild(tr);
     }
 
@@ -78,19 +79,6 @@ function formatMoney(v) {
   return n.toLocaleString(undefined, { style: "currency", currency: "USD" });
 }
 
-// EXAMPLE: load invoice #345 (matches your demo)
-loadInvoiceById("707");
-
-// If you prefer to load the latest invoice instead, use this:
-// loadLatestInvoice();
-// async function loadLatestInvoice() {
-//   const res = await fetch(SHEETDB_URL);
-//   const data = await res.json();
-//   // sort by Id numerically descending; adjust if your Id is text
-//   data.sort((a, b) => Number(b.Id) - Number(a.Id));
-//   if (data.length) loadInvoiceById(data[0].Id);
-// }
-
   // PopUp Invoice search 
 
   // POP UP SEARCH
@@ -104,9 +92,28 @@ popUpDiv.innerHTML = `
   <button type="submit" id='btnInvoice' class="bg-red-500 border-2 border-white text-white w-20 rounded-lg p-2">Invoice</button>
 `;
 popUpDiv.style.display = 'none'; // Hidden by default
+popUpDiv.querySelector('input').style.textAlign = "center";
 h2.appendChild(popUpDiv);
 
 // Toggle on click
 popUp.addEventListener('click', () => {
   popUpDiv.style.display = (popUpDiv.style.display === 'none') ? 'block' : 'none';
 });
+
+document.querySelector('button').addEventListener('click', ()=>{
+  let invIn = document.querySelector('input').value.trim()
+
+  if (invIn) {
+    loadInvoiceById(invIn);
+    popUpDiv.style.display = 'none';
+  }else{
+    alert("Invoice Number!")
+  }
+
+})
+
+
+
+
+  // 
+  
