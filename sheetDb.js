@@ -50,7 +50,9 @@ smtBtn.addEventListener("submit", async (event) => {
       Address: document.getElementById("Address").value,
       PickupDelivery: document.getElementById("PickupDelivery").value,
       Items: document.getElementById("Items").value,
+      Quantity: document.getElementById("Quantity").value,
       Cost: document.getElementById("Cost").value,
+      Deposit: document.getElementById("Deposit").value,
       Payment: document.getElementById("Payment").value,
     };
 
@@ -62,7 +64,9 @@ smtBtn.addEventListener("submit", async (event) => {
       !data.Address ||
       !data.PickupDelivery ||
       !data.Items ||
+      !data.Quantity ||
       !data.Cost ||
+      !data.Deposit ||
       !data.Payment
     ) {
       Swal.fire({
@@ -86,8 +90,9 @@ smtBtn.addEventListener("submit", async (event) => {
         if (field.value.trim() === "") {
           // empty → red
           field.style.border = "1px solid red";
-          btn.style.background = "white";
-          btn.style.border = "2px solid red";
+          field.style.background = "lightcoral";
+          btn.style.background = "lightcoral";
+          field.style.color = "white";
         } else {
           // has content → green
           field.style.border = "1px solid green";

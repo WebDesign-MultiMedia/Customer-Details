@@ -16,7 +16,7 @@
     class="bg-gray-800 sm:bg-blue-200 md:bg-red-200 lg:bg-green-200 xl:bg-yellow-200 2xl:bg-pink-200"
   >
     <form>
-      <fieldset class="border-2 border-white">
+      <fieldset class="border-2 border-white rounded-xl">
         <legend class="text-yellow-400 text-3xl">Customer Order</legend>
         <!-- CUSTOMER INFO -->
         <div class="flex flex-col items-center">
@@ -33,6 +33,7 @@
             name=""
             id=""
             placeholder="Cutomer Name"
+            class="text-center"
           />
           <label for="" class="text-white">Phone</label>
           <input
@@ -41,6 +42,7 @@
             name=""
             id=""
             placeholder="Customer Phone"
+            class="text-center"
           />
           <label for="" class="text-white">Address</label>
           <input
@@ -49,13 +51,14 @@
             name=""
             id=""
             placeholder="Customer Address"
+            class="text-center"
           />
         </div>
         <!-- Customer Payment -->
         <div class="flex justify-around">
           <div class="w-1/6 h-12">
             <label for="" class="text-white">Type</label>
-            <select name="PickupDelivery" id="PickupDelivery">
+            <select name="PickupDelivery" id="PickupDelivery" class="text-center">
               <option value="">Type</option>
               <option value="Delivery">Delivery</option>
               <option value="Pick-up">Pick-up</option>
@@ -69,12 +72,12 @@
               name=""
               id=""
               placeholder="Total"
-              class="w-20"
+              class="w-20 text-center"
             />
           </div>
           <div class="w-1/6 h-12">
             <label for="" class="text-white">Payment</label>
-            <select id="Payment" name="Payment">
+            <select id="Payment" name="Payment" class="text-center">
               <option value="">Paid w/</option>
               <option value="Cash">Cash</option>
               <option value="Zelle">Zelle</option>
@@ -88,7 +91,7 @@
               name=""
               id=""
               placeholder="Desposit"
-              class="w-16"
+              class="w-16 text-center"
             />
           </div>
         </div>
@@ -110,23 +113,24 @@
             value="1"
             min="1"
             max="10"
+            class="text-center w-7 "
           />
         </div>
         <button
           type="submit"
-          class="text-white float-right p-2 ml-2 rounded-lg bg-blue-900 hover:bg-blue-600"
+          class="text-white float-right p-2 relative right-5 -top-4 rounded-lg bg-blue-900 hover:bg-blue-600"
         >
           Submit
         </button>
       </fieldset>
     </form>
 
-    <!-- <section class="flex justify-center mt-10 ">
+    <section class="flex justify-start ml-5 mt-2 ">
         <div class="flex ">
-            <a href=""><i class="fa-solid fa-file-spreadsheet text-5xl text-green-600 border-2 border-black rounded-3xl bg-white"></i></a>
-            <a href=""><i class="fa-solid fa-file-magnifying-glass text-5xl ml-10 mr-10 text-blue-700 border-2 border-black rounded-3xl bg-white"></i></a>
-            <a href=""><i class="fa-solid fa-file-invoice-dollar text-5xl text-teal-800 border-2 border-black rounded-3xl bg-white"></i></a>
+            <a href=""><i class="fa-solid fa-file-spreadsheet text-5xl text-green-600 hover:text-green-400 border-2 border-black rounded-3xl bg-white"></i></a>
+            <a href=""><i class="fa-solid fa-file-magnifying-glass text-5xl ml-10 mr-10 text-blue-700 hover:text-blue-400 border-2 border-black rounded-3xl bg-white"></i></a>
+            <a href=""><i class="fa-solid fa-file-invoice-dollar text-5xl text-teal-800 hover:text-gray-500 border-2 border-black rounded-3xl bg-white"></i></a>
         </div>
-    </section> -->
+    </section>
   </body>
 </html>
