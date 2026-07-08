@@ -5,6 +5,21 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Decorative floating shapes are deliberately positioned partly off-edge;
+       without this, mobile browsers still allow horizontally scrolling into
+       that empty space even though `.page-shell` clips it on `<body>`. */
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+  body {
+    max-width: 100%;
+  }
+  /* Belt-and-suspenders for the format-detection meta tag: some iOS Safari
+     versions still wrap detected phone numbers/dates in a link and underline
+     them regardless. */
+  a[x-apple-data-detectors] {
+    color: inherit !important;
+    text-decoration: inherit !important;
   }
 }
 

@@ -6,6 +6,7 @@ const SEARCH_FIELDS = {
   Address: { label: "Address", icon: "fa-location-dot", type: "text", placeholder: "e.g. 123 Main St" },
   Date: { label: "Order date", icon: "fa-calendar-days", type: "date", placeholder: "" },
   Month: { label: "Order month", icon: "fa-calendar", type: "month", placeholder: "" },
+  Year: { label: "Order year", icon: "fa-calendar-week", type: "number", placeholder: "e.g. 2026" },
 };
 
 // DATE FORMAT MM/DD/YYYY (matches the format sheetDb.js writes to the sheet)
@@ -44,8 +45,8 @@ function updateSearchFieldUI() {
 async function searchOrders(field, query) {
   const displayDiv = document.getElementById("searchResults");
   displayDiv.innerHTML = `
-    <div class="col-span-full flex flex-col items-center gap-3 py-10 text-brand-goldlight/80">
-      <i class="fa-solid fa-circle-notch fa-spin text-3xl"></i>
+    <div class="col-span-full flex flex-col items-center gap-3 py-10 text-brand-muted/80">
+      <i class="fa-solid fa-circle-notch fa-spin text-3xl text-brand-gold"></i>
       <p>Searching orders...</p>
     </div>
   `;
@@ -62,6 +63,12 @@ async function searchOrders(field, query) {
       results = data.filter((row) => {
         const parsed = parseStoredDate(row.Date);
         return parsed && parsed.month === qMonth && parsed.year === qYear;
+      });
+    } else if (field === "Year") {
+      const qYear = Number(query);
+      results = data.filter((row) => {
+        const parsed = parseStoredDate(row.Date);
+        return parsed && parsed.year === qYear;
       });
     } else {
       const regex = new RegExp(escapeRegex(query), "i");
@@ -87,8 +94,8 @@ function displayResults(results) {
 
   if (results.length === 0) {
     displayDiv.innerHTML = `
-      <div class="col-span-full flex flex-col items-center gap-2 py-10 text-white/70 stagger-in">
-        <i class="fa-solid fa-folder-open text-3xl text-brand-goldlight/70"></i>
+      <div class="col-span-full flex flex-col items-center gap-2 py-10 text-brand-muted/80 stagger-in">
+        <i class="fa-solid fa-folder-open text-3xl text-brand-muted/50"></i>
         <p>No matching orders found</p>
       </div>
     `;
@@ -105,18 +112,18 @@ function displayResults(results) {
     card.className = "tilt glass-card p-5 stagger-in";
     card.innerHTML = `
       <div class="flex items-center justify-between mb-3">
-        <span class="text-brand-goldlight font-semibold"><i class="fa-solid fa-hashtag"></i> ${order.Id ?? ""}</span>
-        <span class="text-sm text-white/70"><i class="fa-solid fa-calendar-days"></i> ${order.Date ?? ""}</span>
+        <span class="text-brand-navy font-semibold"><i class="fa-solid fa-hashtag"></i> ${order.Id ?? ""}</span>
+        <span class="text-sm text-brand-muted/70"><i class="fa-solid fa-calendar-days"></i> ${order.Date ?? ""}</span>
       </div>
-      <div class="space-y-1.5 text-sm">
-        <p><i class="fa-solid fa-user text-brand-goldlight w-5"></i> ${order.Name ?? ""}</p>
+      <div class="space-y-1.5 text-sm text-brand-navydeep">
+        <p><i class="fa-solid fa-user text-brand-gold w-5"></i> ${order.Name ?? ""}</p>
         <p><i class="fa-solid fa-phone text-brand-teal w-5"></i> ${order.Contact ?? ""}</p>
         <p><i class="fa-solid fa-location-dot text-brand-coral w-5"></i> ${order.Address ?? ""}</p>
-        <p><i class="fa-solid fa-clipboard-list text-brand-gold w-5"></i> ${order.Items ?? ""}</p>
+        <p><i class="fa-solid fa-clipboard-list text-brand-terracotta w-5"></i> ${order.Items ?? ""}</p>
       </div>
-      <div class="flex items-center justify-between mt-4 pt-3 border-t border-white/10">
-        <span class="text-xs uppercase tracking-wide text-white/60"><i class="fa-solid fa-wallet"></i> ${order.Payment ?? ""}</span>
-        <span class="text-lg font-bold text-brand-goldlight">$${order.Cost ?? "0"}</span>
+      <div class="flex items-center justify-between mt-4 pt-3 border-t border-brand-navydeep/10">
+        <span class="text-xs uppercase tracking-wide text-brand-muted/70"><i class="fa-solid fa-wallet"></i> ${order.Payment ?? ""}</span>
+        <span class="text-lg font-bold text-brand-navy">$${order.Cost ?? "0"}</span>
       </div>
       <a href="invoice.html?id=${encodeURIComponent(order.Id ?? "")}" target="_blank" rel="noopener" class="btn-3d w-full justify-center mt-4 !py-2 text-sm">
         <i class="fa-solid fa-file-invoice-dollar"></i> Generate Invoice
