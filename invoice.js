@@ -157,18 +157,37 @@ if (printBtn) {
   printBtn.addEventListener('click', () => window.print());
 }
 
-// SAVE AS IMAGE
+// SAVE AS IMAGE — html2canvas renders CSS 3D transforms/perspective very
+// poorly (gradient/clipped text in particular can come out as a solid,
+// unreadable block). The invoice card's entrance animation is often still
+// live (or its ancestor's `perspective` still active) when this is clicked,
+// so briefly neutralize both, capture, then restore.
 const downloadBtn = document.getElementById('downloadBtn');
 if (downloadBtn) {
   downloadBtn.addEventListener('click', async () => {
     const card = document.getElementById('invoiceCard');
-    if (!card || !window.html2canvas) return;
-    const canvas = await html2canvas(card, { backgroundColor: '#fdf8ee', scale: 2 });
-    const link = document.createElement('a');
-    const invoiceId = document.getElementById('invNumber')?.textContent?.trim();
-    link.download = `invoice-${invoiceId || 'order'}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
+    const wrap = document.getElementById('invoiceCardWrap');
+    if (!card || !wrap || !window.html2canvas) return;
+
+    const prevAnimation = card.style.animation;
+    const prevTransform = card.style.transform;
+    const prevPerspective = wrap.style.perspective;
+    card.style.animation = 'none';
+    card.style.transform = 'none';
+    wrap.style.perspective = 'none';
+
+    try {
+      const canvas = await html2canvas(card, { backgroundColor: '#ffffff', scale: 2 });
+      const link = document.createElement('a');
+      const invoiceId = document.getElementById('invNumber')?.textContent?.trim();
+      link.download = `invoice-${invoiceId || 'order'}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    } finally {
+      card.style.animation = prevAnimation;
+      card.style.transform = prevTransform;
+      wrap.style.perspective = prevPerspective;
+    }
   });
 }
 
