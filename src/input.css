@@ -34,12 +34,12 @@
     position: relative;
     min-height: 100vh;
     overflow-x: hidden;
-    background-color: theme("colors.brand.night");
+    background-color: #ffffff;
     background-image:
-      radial-gradient(circle at 15% 20%, rgba(242, 177, 52, 0.18), transparent 45%),
-      radial-gradient(circle at 85% 15%, rgba(15, 168, 154, 0.16), transparent 45%),
-      radial-gradient(circle at 50% 90%, rgba(239, 91, 91, 0.14), transparent 55%),
-      radial-gradient(circle at 10% 80%, rgba(79, 138, 91, 0.16), transparent 50%);
+      radial-gradient(circle at 15% 20%, rgba(0, 85, 255, 0.06), transparent 45%),
+      radial-gradient(circle at 85% 15%, rgba(1, 211, 211, 0.07), transparent 45%),
+      radial-gradient(circle at 50% 90%, rgba(46, 107, 229, 0.05), transparent 55%),
+      radial-gradient(circle at 10% 80%, rgba(2, 136, 203, 0.06), transparent 50%);
     background-size: 160% 160%, 160% 160%, 160% 160%, 160% 160%;
     animation: meshShift 18s ease-in-out infinite;
   }
@@ -47,29 +47,25 @@
   .blob {
     position: absolute;
     border-radius: 9999px;
-    filter: blur(60px);
-    opacity: 0.55;
+    filter: blur(70px);
+    opacity: 0.16;
     pointer-events: none;
     z-index: 0;
   }
 
-  /* ---------- Glass surfaces ---------- */
+  /* ---------- Card surfaces ---------- */
   .glass-card {
     position: relative;
     z-index: 10;
-    background: linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: #ffffff;
+    border: 1px solid rgba(0, 26, 80, 0.08);
     border-radius: 1.75rem;
     box-shadow: theme("boxShadow.depth-lg");
   }
 
   .glass-panel {
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: #ffffff;
+    border: 1px solid rgba(0, 26, 80, 0.08);
     border-radius: 1.25rem;
   }
 
@@ -132,31 +128,31 @@
     font-size: 0.72rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: theme("colors.brand.goldlight");
+    color: theme("colors.brand.muted");
     opacity: 0.85;
   }
   .input-3d {
     width: 100%;
-    background: rgba(5, 13, 28, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: #ffffff;
+    border: 1.5px solid rgba(0, 26, 80, 0.14);
     border-radius: 0.9rem;
     padding: 0.65rem 0.9rem;
-    color: white;
-    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35);
+    color: theme("colors.brand.navydeep");
+    box-shadow: none;
     transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
   }
   .input-3d::placeholder {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(46, 56, 77, 0.4);
   }
   .input-3d:focus {
     outline: none;
     border-color: theme("colors.brand.gold");
     transform: translateY(-2px);
-    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35), theme("boxShadow.glow-gold");
+    box-shadow: theme("boxShadow.glow-gold");
   }
   .input-3d.field-error {
-    border-color: theme("colors.brand.coral");
-    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(239, 91, 91, 0.5);
+    border-color: theme("colors.brand.error");
+    box-shadow: 0 0 0 1px rgba(226, 55, 68, 0.4);
   }
   .input-3d.field-valid {
     border-color: theme("colors.brand.teal");
@@ -172,9 +168,9 @@
     border-radius: 1rem;
     padding: 0.75rem 1.75rem;
     font-weight: 600;
-    color: theme("colors.brand.navydeep");
-    background: linear-gradient(180deg, theme("colors.brand.goldlight"), theme("colors.brand.gold"));
-    box-shadow: theme("boxShadow.depth-md"), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+    background: linear-gradient(135deg, theme("colors.brand.gold"), theme("colors.brand.navylight"));
+    box-shadow: theme("boxShadow.depth-md");
     transform: translateY(0);
     transition: transform 120ms ease, box-shadow 120ms ease;
   }
@@ -195,7 +191,9 @@
     width: 3.75rem;
     height: 3.75rem;
     border-radius: 9999px;
-    color: white;
+    background: #ffffff;
+    color: theme("colors.brand.navydeep");
+    box-shadow: theme("boxShadow.depth-sm");
     transform-style: preserve-3d;
     transition: transform 150ms ease-out, box-shadow 150ms ease-out;
   }
@@ -207,11 +205,11 @@
   .shimmer-text {
     background-image: linear-gradient(
       100deg,
-      theme("colors.brand.goldlight") 20%,
+      theme("colors.brand.navylight") 20%,
       theme("colors.brand.gold") 40%,
-      #fff 50%,
+      theme("colors.brand.goldlight") 50%,
       theme("colors.brand.gold") 60%,
-      theme("colors.brand.goldlight") 80%
+      theme("colors.brand.navylight") 80%
     );
     background-size: 200% auto;
     -webkit-background-clip: text;
