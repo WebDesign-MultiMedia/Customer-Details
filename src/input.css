@@ -1,3 +1,261 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Plain CSS keyframes: referenced directly in custom component classes below,
+   not via Tailwind's animate-* utilities, so they must be defined here to
+   guarantee Tailwind's content scan doesn't drop them as "unused". */
+@keyframes meshShift {
+  0%, 100% { background-position: 0% 0%, 100% 0%, 50% 100%, 0% 100%; }
+  50% { background-position: 100% 100%, 0% 100%, 50% 0%, 20% 60%; }
+}
+/* Uses the standalone `translate` property (not `transform`) so this
+   entrance animation never fights with the live tilt `transform` on
+   the same element (CSS animations otherwise win the cascade and
+   `forwards` would permanently pin `transform`, killing the tilt). */
+@keyframes fadeInUp {
+  0% { opacity: 0; translate: 0 28px; }
+  100% { opacity: 1; translate: 0 0; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@layer components {
+  /* ---------- Animated backdrop ---------- */
+  .page-shell {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: theme("colors.brand.night");
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(242, 177, 52, 0.18), transparent 45%),
+      radial-gradient(circle at 85% 15%, rgba(15, 168, 154, 0.16), transparent 45%),
+      radial-gradient(circle at 50% 90%, rgba(239, 91, 91, 0.14), transparent 55%),
+      radial-gradient(circle at 10% 80%, rgba(79, 138, 91, 0.16), transparent 50%);
+    background-size: 160% 160%, 160% 160%, 160% 160%, 160% 160%;
+    animation: meshShift 18s ease-in-out infinite;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(60px);
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ---------- Glass surfaces ---------- */
+  .glass-card {
+    position: relative;
+    z-index: 10;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 1.75rem;
+    box-shadow: theme("boxShadow.depth-lg");
+  }
+
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 1.25rem;
+  }
+
+  .paper-card {
+    position: relative;
+    background: linear-gradient(180deg, #ffffff, theme("colors.brand.cream"));
+    border-radius: 1.5rem;
+    box-shadow: theme("boxShadow.paper");
+  }
+
+  .paper-card::before,
+  .paper-card::after {
+    content: "";
+    position: absolute;
+    left: 6%;
+    right: 6%;
+    height: 100%;
+    top: 10px;
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: -1;
+  }
+  .paper-card::before {
+    transform: rotate(-1.5deg);
+    box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.25);
+  }
+  .paper-card::after {
+    left: 3%;
+    right: 3%;
+    top: 5px;
+    transform: rotate(1deg);
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 10px 24px -16px rgba(0, 0, 0, 0.2);
+  }
+
+  /* ---------- 3D tilt ---------- */
+  .tilt-wrap {
+    perspective: 1200px;
+  }
+  .tilt {
+    transform-style: preserve-3d;
+    transform: rotateX(var(--ry, 0deg)) rotateY(var(--rx, 0deg)) translateZ(0);
+    transition: transform 120ms ease-out, box-shadow 200ms ease-out;
+    will-change: transform;
+  }
+  .tilt:hover {
+    box-shadow: theme("boxShadow.depth-lg");
+  }
+
+  /* ---------- Inputs ---------- */
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .field-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: theme("colors.brand.goldlight");
+    opacity: 0.85;
+  }
+  .input-3d {
+    width: 100%;
+    background: rgba(5, 13, 28, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 0.9rem;
+    padding: 0.65rem 0.9rem;
+    color: white;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35);
+    transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+  }
+  .input-3d::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+  .input-3d:focus {
+    outline: none;
+    border-color: theme("colors.brand.gold");
+    transform: translateY(-2px);
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35), theme("boxShadow.glow-gold");
+  }
+  .input-3d.field-error {
+    border-color: theme("colors.brand.coral");
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(239, 91, 91, 0.5);
+  }
+  .input-3d.field-valid {
+    border-color: theme("colors.brand.teal");
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn-3d {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 1rem;
+    padding: 0.75rem 1.75rem;
+    font-weight: 600;
+    color: theme("colors.brand.navydeep");
+    background: linear-gradient(180deg, theme("colors.brand.goldlight"), theme("colors.brand.gold"));
+    box-shadow: theme("boxShadow.depth-md"), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transform: translateY(0);
+    transition: transform 120ms ease, box-shadow 120ms ease;
+  }
+  .btn-3d:hover {
+    transform: translateY(-2px);
+    box-shadow: theme("boxShadow.depth-lg"), theme("boxShadow.glow-gold");
+  }
+  .btn-3d:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: theme("boxShadow.depth-sm");
+  }
+
+  .fab {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.75rem;
+    height: 3.75rem;
+    border-radius: 9999px;
+    color: white;
+    transform-style: preserve-3d;
+    transition: transform 150ms ease-out, box-shadow 150ms ease-out;
+  }
+  .fab:hover {
+    box-shadow: theme("boxShadow.depth-lg");
+  }
+
+  /* ---------- Text ---------- */
+  .shimmer-text {
+    background-image: linear-gradient(
+      100deg,
+      theme("colors.brand.goldlight") 20%,
+      theme("colors.brand.gold") 40%,
+      #fff 50%,
+      theme("colors.brand.gold") 60%,
+      theme("colors.brand.goldlight") 80%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+
+  /* ---------- Entrance stagger helper ---------- */
+  .stagger-in {
+    opacity: 0;
+    animation: fadeInUp 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+}
+
+@media print {
+  @page {
+    size: 8.5in 11in;
+    margin: 0.4in;
+  }
+  .no-print {
+    display: none !important;
+  }
+  html,
+  body {
+    background: white !important;
+    height: auto !important;
+  }
+  .page-shell {
+    min-height: 0 !important;
+    background: white !important;
+    animation: none !important;
+  }
+  main {
+    padding: 0 !important;
+    display: block !important;
+  }
+  /* The stacked-paper shadow layers are decorative only; they'd render as
+     stray offset boxes once the invoice is scaled/paginated for print. */
+  .paper-card::before,
+  .paper-card::after {
+    content: none !important;
+  }
+  #invoiceCard {
+    box-shadow: none !important;
+  }
+}

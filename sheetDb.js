@@ -85,17 +85,13 @@ smtBtn.addEventListener("submit", async (event) => {
       });
       const f = document.getElementById("custForm");
       const fields = f.querySelectorAll("input, select, textarea");
-      const btn = document.querySelector("button");
       fields.forEach((field) => {
         if (field.value.trim() === "") {
-          // empty → red
-          field.style.border = "1px solid red";
-          field.style.background = "lightcoral";
-          btn.style.background = "lightcoral";
-          field.style.color = "white";
+          field.classList.remove("field-valid");
+          field.classList.add("field-error");
         } else {
-          // has content → green
-          field.style.border = "1px solid green";
+          field.classList.remove("field-error");
+          field.classList.add("field-valid");
         }
       });
     } else {
@@ -131,13 +127,11 @@ smtBtn.addEventListener("submit", async (event) => {
       }
 
       smtBtn.reset();
-      fields.reset();
+      smtBtn
+        .querySelectorAll("input, select, textarea")
+        .forEach((field) => field.classList.remove("field-error", "field-valid"));
     }
   }
 
   await gSheetSubmit();
-
-  swal("Submitted Successfully!", "...Keep on tracking!");
-  document.getElementById("CustomerDetails").reset();
-  setTimeout(() => {}, 3000);
 });

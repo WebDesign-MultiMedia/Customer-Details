@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,131 +6,148 @@
     <!-- TailwindCss -->
     <link rel="stylesheet" href="./src/output.css" />
     <!-- Awsome Font -->
-    <script
-      src="https://kit.fontawesome.com/2b46095725.js"
-      crossorigin="anonymous"
-    ></script>
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Metamorphous&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mozilla+Headline:wght@200..700&family=Playwrite+AU+QLD:wght@100..400&family=Playwrite+HU:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
+    <title>What's New</title>
   </head>
-  <body
-    class="bg-gray-800 sm:bg-blue-200 md:bg-red-200 lg:bg-green-200 xl:bg-yellow-200 2xl:bg-pink-200"
-  >
-    <form>
-      <fieldset class="border-2 border-white rounded-xl">
-        <legend class="text-yellow-400 text-3xl">Customer Order</legend>
-        <!-- CUSTOMER INFO -->
-        <div class="flex flex-col items-center">
-          <span class="flex flex-row">
-            <label for="" class="text-white mr-2">Date</label>
-            <input type="date" value="" name="" id="" />
-            <label for="" class="text-white ml-2 mr-2">Time</label>
-            <input type="time" value="" name="" id="" />
-          </span>
-          <label for="" class="text-white">Name</label>
-          <input
-            type="text"
-            value=""
-            name=""
-            id=""
-            placeholder="Cutomer Name"
-            class="text-center"
-          />
-          <label for="" class="text-white">Phone</label>
-          <input
-            type="text"
-            value=""
-            name=""
-            id=""
-            placeholder="Customer Phone"
-            class="text-center"
-          />
-          <label for="" class="text-white">Address</label>
-          <input
-            type="text"
-            value=""
-            name=""
-            id=""
-            placeholder="Customer Address"
-            class="text-center"
-          />
-        </div>
-        <!-- Customer Payment -->
-        <div class="flex justify-around">
-          <div class="w-1/6 h-12">
-            <label for="" class="text-white">Type</label>
-            <select name="PickupDelivery" id="PickupDelivery" class="text-center">
-              <option value="">Type</option>
-              <option value="Delivery">Delivery</option>
-              <option value="Pick-up">Pick-up</option>
-            </select>
-          </div>
-          <div class="w-1/6 h-12">
-            <label for="" class="text-white">Cost</label>
-            <input
-              type="text"
-              value=""
-              name=""
-              id=""
-              placeholder="Total"
-              class="w-20 text-center"
-            />
-          </div>
-          <div class="w-1/6 h-12">
-            <label for="" class="text-white">Payment</label>
-            <select id="Payment" name="Payment" class="text-center">
-              <option value="">Paid w/</option>
-              <option value="Cash">Cash</option>
-              <option value="Zelle">Zelle</option>
-            </select>
-          </div>
-          <div class="w-1/6 h-12">
-            <label for="" class="text-white">Deposit</label>
-            <input
-              type="text"
-              value=""
-              name=""
-              id=""
-              placeholder="Desposit"
-              class="w-16 text-center"
-            />
-          </div>
-        </div>
-        <!-- CUSTOMER ORDER -->
-        <div class="flex flex-col items-center flex-nowrap">
-          <label for="" class="text-white">Items</label>
-          <textarea
-            name="Items"
-            id=""
-            cols="30"
-            rows="3"
-            placeholder="Customer order"
-          ></textarea>
-          <label for="" class="text-white">Quantity</label>
-          <input
-            type="number"
-            name="Quantity"
-            id=""
-            value="1"
-            min="1"
-            max="10"
-            class="text-center w-7 "
-          />
-        </div>
-        <button
-          type="submit"
-          class="text-white float-right p-2 relative right-5 -top-4 rounded-lg bg-blue-900 hover:bg-blue-600"
-        >
-          Submit
-        </button>
-      </fieldset>
-    </form>
+  <body class="page-shell font-form1 text-white">
+    <div class="blob bg-brand-pink w-72 h-72 -top-10 -right-10 animate-float-slow"></div>
+    <div class="blob bg-brand-cactus w-64 h-64 bottom-0 -left-16 animate-float"></div>
 
-    <section class="flex justify-start ml-5 mt-2 ">
-        <div class="flex ">
-            <a href=""><i class="fa-solid fa-file-spreadsheet text-5xl text-green-600 hover:text-green-400 border-2 border-black rounded-3xl bg-white"></i></a>
-            <a href=""><i class="fa-solid fa-file-magnifying-glass text-5xl ml-10 mr-10 text-blue-700 hover:text-blue-400 border-2 border-black rounded-3xl bg-white"></i></a>
-            <a href=""><i class="fa-solid fa-file-invoice-dollar text-5xl text-teal-800 hover:text-gray-500 border-2 border-black rounded-3xl bg-white"></i></a>
+    <main class="relative z-10 flex flex-col items-center px-4 py-10">
+      <!-- Papel picado banner -->
+      <div class="w-full h-14 sm:h-16 mb-2 select-none pointer-events-none no-print">
+        <svg viewBox="0 0 800 60" preserveAspectRatio="xMidYMin meet" class="w-full h-full">
+          <line x1="0" y1="4" x2="800" y2="4" stroke="#3a2a1a" stroke-width="2" opacity="0.5"/>
+          <g transform="translate(0,0)"><polygon points="2,4 62,4 32,52" fill="#f2b134"/><circle cx="32" cy="16" r="3.5" fill="#fdf8ee" opacity="0.4"/></g>
+          <g transform="translate(73,0)"><polygon points="2,4 62,4 32,52" fill="#e94f9b"/><circle cx="32" cy="16" r="3.5" fill="#fdf8ee" opacity="0.4"/></g>
+          <g transform="translate(146,0)"><polygon points="2,4 62,4 32,52" fill="#0fa89a"/><circle cx="32" cy="16" r="3.5" fill="#fdf8ee" opacity="0.4"/></g>
+          <g transform="translate(219,0)"><polygon points="2,4 62,4 32,52" fill="#c1502e"/><circle cx="32" cy="16" r="3.5" fill="#fdf8ee" opacity="0.4"/></g>
+          <g transform="translate(292,0)"><polygon points="2,4 62,4 32,52" fill="#4f8a5b"/><circle cx="32" cy="16" r="3.5" fill="#fdf8ee" opacity="0.4"/></g>
+          <g transform="translate(365,0)"><polygon points="2,4 62,4 32,52" fill="#f2b134"/><circle cx="32" cy="16" r="3.5" fill="#fdf8ee" opacity="0.4"/></g>
+          <g transform="translate(438,0)"><polygon points="2,4 62,4 32,52" fill="#e94f9b"/><circle cx="32" cy="16" r="3.5" fill="#fdf8ee" opacity="0.4"/></g>
+          <g transform="translate(511,0)"><polygon points="2,4 62,4 32,52" fill="#0fa89a"/><circle cx="32" cy="16" r="3.5" fill="#fdf8ee" opacity="0.4"/></g>
+          <g transform="translate(584,0)"><polygon points="2,4 62,4 32,52" fill="#c1502e"/><circle cx="32" cy="16" r="3.5" fill="#fdf8ee" opacity="0.4"/></g>
+          <g transform="translate(657,0)"><polygon points="2,4 62,4 32,52" fill="#4f8a5b"/><circle cx="32" cy="16" r="3.5" fill="#fdf8ee" opacity="0.4"/></g>
+          <g transform="translate(730,0)"><polygon points="2,4 62,4 32,52" fill="#f2b134"/><circle cx="32" cy="16" r="3.5" fill="#fdf8ee" opacity="0.4"/></g>
+        </svg>
+      </div>
+
+      <div class="flex flex-col items-center mb-8 stagger-in">
+        <img src="./imgs/BLFM-logo.PNG" alt="logo" class="w-16 h-16 object-contain drop-shadow-lg" />
+        <h1 class="font-headings text-2xl sm:text-3xl shimmer-text text-center mt-2">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> What's New
+        </h1>
+        <p class="text-brand-goldlight/80 text-sm tracking-widest uppercase">Order Tracker Updates</p>
+      </div>
+
+      <div class="w-full max-w-2xl flex flex-col gap-4">
+        <div data-tilt data-tilt-max="3" class="tilt glass-card p-6 stagger-in">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-brand-goldlight font-semibold"><i class="fa-solid fa-pepper-hot"></i> Fiesta theme refresh</span>
+            <span class="text-xs text-white/60">2026-07-08</span>
+          </div>
+          <p class="text-sm text-white/80">
+            A warmer, more colorful look throughout — papel picado banners, marigold/terracotta/cactus-green
+            accents alongside the gold and teal.
+          </p>
         </div>
-    </section>
+
+        <div data-tilt data-tilt-max="3" class="tilt glass-card p-6 stagger-in">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-brand-goldlight font-semibold"><i class="fa-solid fa-share-nodes"></i> Read-only invoice sharing</span>
+            <span class="text-xs text-white/60">2026-07-08</span>
+          </div>
+          <p class="text-sm text-white/80">
+            Share a view-only invoice link with a customer straight from the invoice page — they can view, print,
+            or save it, but can't browse other orders or reach the internal tools.
+          </p>
+        </div>
+
+        <div data-tilt data-tilt-max="3" class="tilt glass-card p-6 stagger-in">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-brand-goldlight font-semibold"><i class="fa-solid fa-file-invoice-dollar"></i> Generate invoice from search</span>
+            <span class="text-xs text-white/60">2026-07-08</span>
+          </div>
+          <p class="text-sm text-white/80">Every search result now has a one-click button to jump straight to that order's invoice.</p>
+        </div>
+
+        <div data-tilt data-tilt-max="3" class="tilt glass-card p-6 stagger-in">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-brand-goldlight font-semibold"><i class="fa-solid fa-calendar-days"></i> Search by name, address, date &amp; month</span>
+            <span class="text-xs text-white/60">2026-07-08</span>
+          </div>
+          <p class="text-sm text-white/80">Order search is no longer just phone number — filter by customer name, address, exact date, or a whole month.</p>
+        </div>
+
+        <div data-tilt data-tilt-max="3" class="tilt glass-card p-6 stagger-in">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-brand-goldlight font-semibold"><i class="fa-solid fa-cube"></i> Full 3D redesign</span>
+            <span class="text-xs text-white/60">2026-07-07</span>
+          </div>
+          <p class="text-sm text-white/80">
+            Every page rebuilt with an animated glass/3D look — tilt-on-hover cards, layered depth
+            shadows, and smoother transitions across the order form, search, and invoice.
+          </p>
+        </div>
+
+        <div data-tilt data-tilt-max="3" class="tilt glass-card p-6 stagger-in">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-brand-goldlight font-semibold"><i class="fa-solid fa-file-invoice-dollar"></i> Downloadable invoices</span>
+            <span class="text-xs text-white/60">2026-07-07</span>
+          </div>
+          <p class="text-sm text-white/80">
+            Invoices can now be printed or saved as an image directly from the invoice page.
+          </p>
+        </div>
+
+        <div data-tilt data-tilt-max="3" class="tilt glass-card p-6 stagger-in">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-brand-goldlight font-semibold"><i class="fa-solid fa-magnifying-glass"></i> Order search by phone</span>
+            <span class="text-xs text-white/60">2025-08-10</span>
+          </div>
+          <p class="text-sm text-white/80">Look up any past order instantly by searching a customer's phone number.</p>
+        </div>
+
+        <div data-tilt data-tilt-max="3" class="tilt glass-card p-6 stagger-in">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-brand-goldlight font-semibold"><i class="fa-solid fa-receipt"></i> Invoice lookup by number</span>
+            <span class="text-xs text-white/60">2025-08-10</span>
+          </div>
+          <p class="text-sm text-white/80">Pull up any invoice directly from its receipt number.</p>
+        </div>
+      </div>
+
+      <section class="flex justify-center gap-6 sm:gap-10 mt-12 stagger-in">
+        <div class="tilt-wrap">
+          <a href="index.html" title="Order form">
+            <span data-tilt class="tilt fab glass-panel hover:shadow-glow-gold">
+              <i class="fa-solid fa-house text-2xl text-brand-gold"></i>
+            </span>
+          </a>
+        </div>
+        <div class="tilt-wrap">
+          <a href="search.html" title="Search orders">
+            <span data-tilt class="tilt fab glass-panel hover:shadow-glow-teal">
+              <i class="fa-solid fa-magnifying-glass text-2xl text-brand-teal"></i>
+            </span>
+          </a>
+        </div>
+        <div class="tilt-wrap">
+          <a href="invoice.html" title="View invoice">
+            <span data-tilt class="tilt fab glass-panel hover:shadow-glow-terracotta">
+              <i class="fa-solid fa-file-invoice-dollar text-2xl text-brand-terracotta"></i>
+            </span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <script src="./src/interactions.js"></script>
   </body>
 </html>
